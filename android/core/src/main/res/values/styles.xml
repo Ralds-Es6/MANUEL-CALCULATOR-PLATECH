@@ -1,0 +1,8 @@
+<resources>
+    <style name="CyberCalculatorTheme" parent="android:Theme.DeviceDefault.NoActionBar">
+        <item name="android:windowBackground">#050D14</item>
+        <item name="android:statusBarColor">#050D14</item>
+        <item name="android:navigationBarColor">#050D14</item>
+    </style>
+</resources>
+

@@ -1,0 +1,45 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <path android:pathData="M0,0h108v108h-108z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:startX="0"
+                android:startY="0"
+                android:endX="108"
+                android:endY="108"
+                android:type="linear">
+                <item android:offset="0.0" android:color="#071620"/>
+                <item android:offset="1.0" android:color="#030A10"/>
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <path
+        android:fillColor="#081C27"
+        android:strokeColor="#24ECFF"
+        android:strokeWidth="3"
+        android:pathData="M24,18 L84,18 Q90,18 90,24 L90,84 Q90,90 84,90 L24,90 Q18,90 18,84 L18,24 Q18,18 24,18 Z"/>
+
+    <!-- Mini cyan display -->
+    <path
+        android:fillColor="#05131C"
+        android:strokeColor="#16BCD0"
+        android:strokeWidth="1.5"
+        android:pathData="M30,28 L78,28 Q81,28 81,31 L81,44 Q81,47 78,47 L30,47 Q27,47 27,44 L27,31 Q27,28 30,28 Z"/>
+
+    <!-- Mini buttons row 1 -->
+    <path android:fillColor="#16BCD0" android:pathData="M30,55h12v10h-12z"/>
+    <path android:fillColor="#16BCD0" android:pathData="M48,55h12v10h-12z"/>
+    <path android:fillColor="#16BCD0" android:pathData="M66,55h12v10h-12z"/>
+
+    <!-- Mini buttons row 2 -->
+    <path android:fillColor="#16BCD0" android:pathData="M30,70h12v10h-12z"/>
+    <path android:fillColor="#16BCD0" android:pathData="M48,70h12v10h-12z"/>
+    <path android:fillColor="#24ECFF" android:pathData="M66,70h12v10h-12z"/>
+</vector>
+

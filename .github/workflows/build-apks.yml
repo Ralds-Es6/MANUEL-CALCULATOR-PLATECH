@@ -1,0 +1,60 @@
+name: Build Android APKs
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-apks:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.7'
+
+      - name: Build Cyber Mini & Main Calculator APKs
+        working-directory: android
+        run: gradle :mini-calculator:assembleDebug :main-calculator:assembleDebug --no-daemon
+
+      - name: Prepare named APK files
+        run: |
+          mkdir -p dist
+          cp android/mini-calculator/build/outputs/apk/debug/mini-calculator-debug.apk dist/Cyber-Mini-Calculator.apk
+          cp android/main-calculator/build/outputs/apk/debug/main-calculator-debug.apk dist/Cyber-Main-Calculator.apk
+          ls -lh dist/
+
+      - name: Upload APK build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: cyber-calculator-apks
+          path: dist/*.apk
+
+      - name: Publish APKs to GitHub Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TAG="v1.0"
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            gh release upload "$TAG" dist/Cyber-Mini-Calculator.apk dist/Cyber-Main-Calculator.apk --clobber
+          else
+            gh release create "$TAG" dist/Cyber-Mini-Calculator.apk dist/Cyber-Main-Calculator.apk \
+              --title "Cyber Calculators $TAG" \
+              --notes "Download either **Cyber-Mini-Calculator.apk** or **Cyber-Main-Calculator.apk** below and install on your Android device." \
+              --latest
+          fi
+
